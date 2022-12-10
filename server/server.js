@@ -87,13 +87,27 @@ app.post("/sign-up", (req, res) => {
         let username = req.body.username
         let password = req.body.password
 
-        let query = `INSERT INTO users(username, password) VALUES(?, ?)`
-        const hashedPassword = bcrypt.hashSync(password, 10);
+        let query1 = `SELECT username 
+                      FROM users
+                      WHERE username = ?`
 
-        db.query(query, [username, hashedPassword], 
-                err => { if(err) return console.log(err) 
-                         console.log("credentials saved")   
-                          })
+        db.query(query1, [username], (err, result) => {
+                                                         if(result.length === 0) {
+
+                                                                let query2 = `INSERT INTO users(username, password) VALUES(?, ?)`
+                                                                const hashedPassword = bcrypt.hashSync(password, 10);
+                                                        
+                                                                db.query(query2, [username, hashedPassword], 
+                                                                        err => { if(err) return console.log(err) 
+                                                                                 res.send("credentials saved")   
+                                                                                  })
+                                                          } else {
+                                                                res.send("User already exists")
+                                                          }
+                                                                 
+                                                        })
+
+        
 })
 
 const pokeRoute = require("./routes/pokeroutes")

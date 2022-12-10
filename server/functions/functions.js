@@ -22,9 +22,7 @@ module.exports = {
 
                                     finalArray.push(subArray) 
                                     }      
-                                }
-
-                            
+                                }                           
 
                             return finalArray
                             }
