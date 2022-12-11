@@ -9,6 +9,7 @@ const session = require("express-session")
 const bcrypt = require("bcrypt")
 const cookieParser = require("cookie-parser")
 
+//The middlewares needed
 app.use(cors())
 app.use(express.urlencoded({extended: true}));
 app.use(express.json())
@@ -19,9 +20,19 @@ app.use(session({secret: 'mySecretKey',
 app.use(cookieParser('mySecretKey'))
 app.use(passport.initialize())
 app.use(passport.session())
+const pokeRoute = require("./routes/pokeroutes")
+const authenticateRoutes = require("./routes/authentication")
 
+//The routes
+app.use("/pokemon", pokeRoute)
+app.use("", authenticateRoutes)
+
+//We initialize and configure the new strategy, the local
+//strategy with username and password. 
 passport.use(new localStrategy((username, password, cb) => {
+
         const query = 'SELECT * FROM users WHERE username = ?'
+
         db.query(query, [ username ], function(err, user) {
           if (err) { return cb(err); }
           if (!user) { return cb(null, false, { message: 'Incorrect username or password.' }); }
@@ -38,16 +49,13 @@ passport.use(new localStrategy((username, password, cb) => {
         });
       }));
 
-//creating cookie      
 passport.serializeUser((user, cb) => {
 
         try{
             cb(null, user)
         } catch(err) {
                 throw err
-        }
-        
-        
+        }       
 })
 
 passport.deserializeUser((id, done) => {
@@ -62,56 +70,5 @@ passport.deserializeUser((id, done) => {
                 done(null, userInfo)
         })
 })
-
-
-app.post("/log-in", (req, res, next) => {
-        passport.authenticate("local", (err, user, info) => {
-                if(err) throw err
-                if(!user) res.send('No such user')
-                if(user) {
-                        req.login(user, (err) => {
-                                if(err) throw err
-                                res.send(user)
-                        })
-                }
-        })(req, res, next)
-})
-
-app.get('/getUser', (req, res) => {
-        res.send(req.user)
-})
-
-app.post("/sign-up", (req, res) => {
-
-        passport.authenticate()
-        let username = req.body.username
-        let password = req.body.password
-
-        let query1 = `SELECT username 
-                      FROM users
-                      WHERE username = ?`
-
-        db.query(query1, [username], (err, result) => {
-                                                         if(result.length === 0) {
-
-                                                                let query2 = `INSERT INTO users(username, password) VALUES(?, ?)`
-                                                                const hashedPassword = bcrypt.hashSync(password, 10);
-                                                        
-                                                                db.query(query2, [username, hashedPassword], 
-                                                                        err => { if(err) return console.log(err) 
-                                                                                 res.send("credentials saved")   
-                                                                                  })
-                                                          } else {
-                                                                res.send("User already exists")
-                                                          }
-                                                                 
-                                                        })
-
-        
-})
-
-const pokeRoute = require("./routes/pokeroutes")
-
-app.use("/pokemon", pokeRoute)
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`))
