@@ -73,7 +73,8 @@ router.post( "/comments", (req, res) => {
 
   let query = `INSERT INTO comments VALUES(?, ?, ?)`
   
-  db.query( query, [user, pokemon, comment ], (err, rows) => { if(err) throw err } )
+  db.query( query, [user, pokemon, comment ], (err, rows) => { if(err) throw err 
+                                                               res.send("Your comment has been successfully added!")} )
 })
 
 router.get("/comments/:pokemon", (req, res) => {
