@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const db = require("../database/db")
 const setsOfSix = require("../functions/functions").setsOfSix
+const firstLetterCapital = require("../functions/functions").firstLetterCapital
 
 //The route to get the desired pokemon data by pokemon name.
 router.get("/:name", (req, res) => {
@@ -124,6 +125,23 @@ router.get("/pokemon-sets/:user", (req, res) => {
                                               let sets = setsOfSix(rows) 
                                                res.send(sets)     
                                              })
+})
+
+router.delete("/delete/:user/:pokemon/:id", (req, res) => {
+
+  let user = req.params.user
+  let pokemon = req.params.pokemon
+  let setNumber = req.params.id
+
+  let query = `DELETE  
+               FROM pokemonSets
+               WHERE user = ? AND setNumber = ?`
+
+  db.query( query, [user, setNumber], (err, rows) => { 
+                                                       if(err) throw err    
+                                                       res.send(firstLetterCapital(pokemon) + ' has been removed from your party!')                                                               
+                                                      })
+  
 })
 
 module.exports = router

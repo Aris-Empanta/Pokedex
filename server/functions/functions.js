@@ -25,5 +25,13 @@ module.exports = {
                                 }                           
 
                             return finalArray
-                            }
+                            },
+    //The function to make the first letter capital
+    firstLetterCapital : (name) => {
+        
+
+        if(name)  return name.split("")
+                    .map( (item, index) => index === 0 ? item.toUpperCase() : item )
+                    .join('')
+    }
 }
