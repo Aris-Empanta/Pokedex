@@ -1,0 +1,62 @@
+#loginComponent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    padding-top: 50px;
+}
+
+#pokedexTitle {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 3rem;
+    color: #101010;
+    margin-bottom: 100px;
+}
+
+.credentialsInputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 250px;
+    margin-bottom: 40px;
+}
+
+.inputs {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    border-radius: 3px;
+    outline: none;
+    padding: 10px;
+    color: #101010;
+    border: 1px solid #303030;
+    background-color: transparent;
+}
+
+.inputs::placeholder {
+    color: #303030;
+}
+
+.inputs:focus {
+    outline: none;
+}
+
+#loginButton {
+    width: 100%;
+    cursor: pointer;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+    background-color: #BA0021;
+    border: 1px solid #BA0021;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+    border-radius: 3px;
+}
+
+#notMember {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.2rem;
+}

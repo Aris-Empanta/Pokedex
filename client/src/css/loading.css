@@ -1,0 +1,48 @@
+#loading {
+    display: none;
+    margin-top: 50px;
+}
+
+.pokemonLoader {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    background: linear-gradient(to bottom, #EF0107 50%, white 50% );
+    border-radius: 50%;
+    border: 4px solid #101010;
+    animation: spin 1s linear infinite;
+  }
+  
+  .pokemonLoader::before {
+    content: '';
+    position: absolute;
+    height: 4px;
+    width: 50px;
+    background: #101010;
+    top: 25px;
+    transform: translatey(-25%);
+  }
+  
+  .pokemonLoader::after {
+    content: '';
+    position: absolute;
+    height: 19px;
+    width: 19px;
+    border-radius: 50%;
+    background: white;
+    top: 25px;
+    left: 25px;
+    transform: translate(-50%, -50%);
+    box-shadow: inset 0 0 0 3px #101010, inset 0 0 0 4px white, inset 0 0 0 6px #101010;
+  
+  }
+  
+  /* Spin Animation */
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }

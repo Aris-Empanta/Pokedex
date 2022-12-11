@@ -1,0 +1,29 @@
+.outerStatsWrapper {
+    padding-top: 100px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+#loadingDynamicPokemon {
+    width: 100vw;
+    position: absolute;
+    text-align: center;
+    padding: 100px;
+}
+
+.pleaseWait {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.imageAndStatsWrapper {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#dynamicPokeImage {
+    max-width: 94%;
+    margin-left: 3%;
+}
