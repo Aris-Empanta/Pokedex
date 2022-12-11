@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import { firstLetterCapital } from "../functions/home"
 import { Link } from "react-router-dom";
 import "../css/dynamicPokemon.css"
-import {Loading} from "./loading"
+import { serverHost } from "../variables/serverHost";
 
 export const DynamicPokemon = () => {
     
@@ -18,10 +18,10 @@ export const DynamicPokemon = () => {
 
                         loading.style.display = "initial"
 
-                        axios.get("http://localhost:5000/pokemon/" + params.pokemon)
+                        axios.get( serverHost + "pokemon/" + params.pokemon)
                              .then( res =>  { loading.style.display = "none"
                                                setPokemon(res.data)} )
-                        axios.get("http://localhost:5000/pokemon/comments/" + params.pokemon)
+                        axios.get( serverHost + "pokemon/comments/" + params.pokemon)
                              .then( res =>  setComments(res.data) )
                     }, [])
 

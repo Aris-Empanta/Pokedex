@@ -100,11 +100,9 @@ module.exports = {
                                                               VALUES( ?, ?, ?, ? )`
       
                                                   db.query( query, [ maxSet, pokemon, user, image ], (err, rows) => { 
-                                                                                                              if(err) throw err
-                                                                                                              res.send(`Congratulations! You 
-                                                                                                                        caught 
-                                                                                                                        ${firstLetterCapital(pokemon)}`)
-                                                                                                              })                                               
+                                                                                                      if(err) throw err
+                                                                                                      res.send(`Congratulations! You caught ${firstLetterCapital(pokemon)} !`)
+                                                                                                      })                                               
                                                   })                               
             },
     fetchCaught: (req, res) => {

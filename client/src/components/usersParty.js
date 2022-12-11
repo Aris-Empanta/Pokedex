@@ -4,6 +4,7 @@ import axios from "axios"
 import { firstLetterCapital } from "../functions/home"
 import { Link } from "react-router-dom";
 import { removeFromParty } from "../functions/usersParty";
+import { serverHost } from "../variables/serverHost";
 
 export const UsersParty = () => {   
     
@@ -14,7 +15,7 @@ export const UsersParty = () => {
 
         let user = JSON.parse(localStorage.getItem('username'))
 
-        axios.get("http://localhost:5000/pokemon/pokemon-sets/" + user)
+        axios.get( serverHost + "pokemon/pokemon-sets/" + user)
              .then( res => {     
                             setUser(user) 
                             console.log(res.data)                     

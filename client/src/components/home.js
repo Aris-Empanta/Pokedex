@@ -103,7 +103,7 @@ export const Home = ({setLoggedIn}) => {
                            <p className="evolutionChainTitle">Evolution Chain</p>
                            <div className="evolutionChain" >
                            { pokemon.evolutions !== undefined ? 
-                           pokemon.evolutions.map( item => <Link className="evolutionLinks" target={"_blank"} to={ item }>
+                           pokemon.evolutions.map( item => <Link className="evolutionLinks" target={"_blank"} to={ "../" + item }>
                                                               <div className="evolutionLinksWrapper">
                                                                 <p>{ firstLetterCapital(item) }</p>
                                                                </div>

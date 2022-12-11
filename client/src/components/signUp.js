@@ -1,6 +1,7 @@
 import "../css/signUp.css"
 import axios from "axios"
 import { useState } from 'react';
+import { serverHost } from "../variables/serverHost";
 
 export const SignUp = () => {
 
@@ -12,10 +13,10 @@ export const SignUp = () => {
 
         if(confirmPassword === password) {
 
-                axios.post("http://localhost:5000/sign-up", {
-                                                            username: username,
-                                                            password: password
-                                                            })
+                axios.post( serverHost + "sign-up",    {
+                                                        username: username,
+                                                        password: password
+                                                        })
                     .then( res => alert(res.data))
             } else {
                 alert("Passwords don't match!")

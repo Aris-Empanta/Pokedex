@@ -2,6 +2,7 @@ import "../css/logIn.css"
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { useState } from 'react';
+import { serverHost } from "../variables/serverHost";
 
 export const Login = ({setLoggedIn}) => {
 
@@ -24,10 +25,10 @@ export const Login = ({setLoggedIn}) => {
             navigate("../home", { replace: true} )
         }
 
-        axios.post("http://localhost:5000/log-in", {
-                                                      username: username,
-                                                      password: password
-                                                    })
+        axios.post( serverHost + "log-in", {
+                                            username: username,
+                                            password: password
+                                        })
              .then( res => {
                             res.data === "No such user" ? alert("Wrong credentials") :
                                                           login()

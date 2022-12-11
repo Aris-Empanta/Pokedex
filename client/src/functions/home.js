@@ -1,3 +1,5 @@
+import { serverHost } from "../variables/serverHost"
+
 //The function to search a pokemon
 export const searchPokemon = (setPokemon, pokeName, pokemon, axios) => {
            
@@ -7,8 +9,8 @@ export const searchPokemon = (setPokemon, pokeName, pokemon, axios) => {
            pokemonInfo.style.display = "none"
            loading.style.display = "initial"
 
-           let endpoints = ["http://localhost:5000/pokemon/" + pokeName, 
-                            "http://localhost:5000/pokemon/comments/" + pokeName]
+           let endpoints = [ serverHost + "pokemon/" + pokeName, 
+                             serverHost + "pokemon/comments/" + pokeName]
 
             axios.all(endpoints.map((endpoint) => axios.get(endpoint))).then(
                 (res) => { 
@@ -59,7 +61,7 @@ export const showDetails = (pokemon, axios) => {
 
     details.style.display = "flex"
     
-    axios.get("http://localhost:5000/pokemon/" + pokemon)
+    axios.get( serverHost + "pokemon/" + pokemon)
          .then((res) => {
                             console.log(res.data)
                          
@@ -85,7 +87,7 @@ export const submitComment = (user, axios, name) => {
                  comment: comment   
                 }
     
-    axios.post("http://localhost:5000/pokemon/comments", data)
+    axios.post( serverHost + "pokemon/comments", data)
          .then( res => { alert(res.data) 
                           } )       
          .catch( err => console.log(err))     
@@ -102,8 +104,8 @@ export const catchPokemon = (axios, pokemon, image, user) => {
                  image: image 
                 }
 
-    axios.post("http://localhost:5000/pokemon/catch/", data)
-         .then( res => console.log(res.data))
+    axios.post( serverHost + "pokemon/catch/", data)
+         .then( res => alert(res.data))
 }
 
 //The function to make the first letter capital
