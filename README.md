@@ -27,3 +27,4 @@
 - You can see all the comments in the details modal.
 - On the upper left corner, you can click the pokeball to see all your sets.
 - You can remove a pokemon from your sets.
+- You can press ESC to close the modal
